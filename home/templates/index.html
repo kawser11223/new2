@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telegram Users</title>
+</head>
+<body>
+    <h1>Registered Telegram Users</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.first_name }} {{ user.last_name }} - {{ user.username }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
