@@ -15,6 +15,13 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import environ
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()  # This reads the .env file
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -55,7 +62,7 @@ MIDDLEWARE = [
     
 ]
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 ROOT_URLCONF = 'web.urls'
@@ -81,23 +88,32 @@ WSGI_APPLICATION = 'web.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-import pymysql
-pymysql.install_as_MySQLdb()
+# import pymysql
+# pymysql.install_as_MySQLdb()
 
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test3',
-        'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': 3306
-    }
+# DATABASES = {
+#     # 'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': BASE_DIR / 'db.sqlite3',
+#     # }
+#      'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'test3',
+#         'USER': 'root',
+#         'PASSWORD': '12345678',
+#         'HOST': 'localhost',
+#         'PORT': 3306
+#     }
+# }
+
+import dj_database_url
+
+DATABASES ={
+    'default': dj_database_url.parse(env('DATABASE_URL'))
+
 }
+
+
 
 
 # Password validation
