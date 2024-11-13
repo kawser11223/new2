@@ -15,11 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import environ
-
-# Initialize environment variables
-env = environ.Env()
-environ.Env.read_env()  # This reads the .env file
 
 
 
@@ -91,27 +86,32 @@ WSGI_APPLICATION = 'web.wsgi.application'
 # import pymysql
 # pymysql.install_as_MySQLdb()
 
-# DATABASES = {
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': BASE_DIR / 'db.sqlite3',
-#     # }
-#      'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'test3',
-#         'USER': 'root',
-#         'PASSWORD': '12345678',
-#         'HOST': 'localhost',
-#         'PORT': 3306
-#     }
-# }
+# import dj_database_url
 
-import dj_database_url
 
-DATABASES ={
-    'default': dj_database_url.parse(env('DATABASE_URL'))
+import environ
 
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()  # This reads from the .env file
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('Database_name'),
+        'USER': env('db_User'),
+        'PASSWORD': env('db_Password'),
+        'HOST': env('db_Host'),
+        'PORT': env('db_Port'),
+    }
 }
+
+# import dj_database_url
+
+# DATABASES ={
+#     'default': dj_database_url.parse(env('DATABASE_URL'))
+
+# }
 
 
 
