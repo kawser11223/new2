@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'whitenoise.runserver_nostatic',
+    
      
 ]
 
@@ -57,7 +58,7 @@ MIDDLEWARE = [
     
 ]
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 ROOT_URLCONF = 'web.urls'
@@ -165,4 +166,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-TELEGRAM_BOT_TOKEN = '8019540152:AAFU_3vpeSDdA_QnecS-WSefBHMkKyXlOpU'
